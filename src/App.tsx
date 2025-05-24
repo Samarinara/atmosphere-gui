@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
+import { listen } from '@tauri-apps/api/event';
 import "./App.css";
 
-function App() {
+
+function LoginPage() {
   const [handle, setHandle] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,7 +13,6 @@ function App() {
     invoke("login", { uname: handle, pwd: password });
     
   }
-
 
 
   return (
@@ -46,6 +47,7 @@ function App() {
       <form className="row">
       <input
           id="pwd-input"
+          type={false ? "text" : "password"}
           onChange={(e) => setPassword(e.currentTarget.value)}
           placeholder="Enter a your password"
         />
@@ -57,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;

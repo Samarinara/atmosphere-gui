@@ -31,24 +31,11 @@ pub fn run() {
         .expect("error while running tauri application");
 }
 
-
-
-
-
-
-
-
-
-
-
-
 #[tauri::command]
 async fn login(uname: String, pwd: String) -> Result<(), String> {
-//    try_login(uname, pwd)
-  //      .await
-    //    .map_err(|e| e.to_string())
-    println!("login {uname} {pwd}");
-    Ok(())
+    try_login(&uname, &pwd)
+        .await
+        .map_err(|e| e.to_string())
 }
 
 
