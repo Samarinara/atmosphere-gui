@@ -1,62 +1,40 @@
-import { useState } from "react";
+import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { Route, Link, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from '@tauri-apps/api/event';
 import "./App.css";
 
+import LoginPage from "./pages/login";
+import HomePage from "./pages/home.tsx";
 
-function LoginPage() {
-  const [handle, setHandle] = useState("");
-  const [password, setPassword] = useState("");
-
-  async function login() {
-
-    invoke("login", { uname: handle, pwd: password });
-    
-  }
-
-
-  return (
-    <main className="container">
-      <h1>Welcome to the Atmosphere</h1>
-
-      <div className="row">
-        <a href="https://bsky.app" target="_blank">
-          <img src="/src/assets/bluesky.svg" className="logo bsky" alt="Bluesky logo" />
-        </a>
-      </div>
-      <p>Click on the butterfly if you have never used bluesky before to create an account</p>
-      <p></p>
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          login();
-        }}
-      >
-        <input
-          id="uname-input"
-          onChange={(e) => setHandle(e.currentTarget.value)}
-          placeholder="Enter a your handle (@bob.bsky.social)"
-        />
-        <button type="submit">Login</button>
-        
-      </form>
-
-        <p></p>
-
-      <form className="row">
-      <input
-          id="pwd-input"
-          type={false ? "text" : "password"}
-          onChange={(e) => setPassword(e.currentTarget.value)}
-          placeholder="Enter a your password"
-        />
-      </form>
+function App() {
+  const [currentRoute, setCurrentRoute] = useState("home");
+  return(
+    <div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/home" element={<HomePage />}></Route>
+      </Routes>
       
-      <p>{handle}</p>
-      <p>{password}</p>
-    </main>
+      <div className="footer">
+        <Link to="/home">Home</Link>
+        <Link to="/login">Login</Link>
+      </div>
+    </BrowserRouter>
+    </div>
   );
 }
 
-export default LoginPage;
+function RouteButton(text: string, route: string){
+  return(
+    <button
+    onClick={() => {
+    }}
+    >{text}</button>
+  )
+}
+
+
+export default App;
