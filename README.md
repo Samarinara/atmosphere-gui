@@ -56,6 +56,5 @@ We welcome contributions to improve and expand this minimal client base!
 - If you encounter any bugs or have feature suggestions, please open an issue on the GitHub repository.
 - Ensure your code follows the existing style and structure where possible.
 
-## License
-
-This project is currently not licensed. Please add a license file (e.g., MIT, Apache 2.0) if you intend to distribute or share this code.
+##About AI
+This README was written with Ai because I wanted to test jules from google. All of the actual code was written by me because this is a learning project and vibe coding won't teach me react. 
